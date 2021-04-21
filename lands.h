@@ -7,7 +7,7 @@
 
 using namespace std;
 
-enum LandTypes {LAKE, FOREST, DESERT, MAX_NUM_LANDS};
+enum LandTypes {LAKE, FOREST, DESERT, CAVE, TOWER, FIELD, SWAMP, MOUNTAIN, MAX_NUM_LANDS};
 
 class Land {
     public:
@@ -45,6 +45,50 @@ class Desert : public Land {
     private:
 };
 
+class Cave : public Land {
+    public:
+    string getShortDescription();
+    string getLongDescription();
+    string visit(Player &p);
+    
+    private:
+};
+
+class Tower : public Land {
+    public:
+    string getShortDescription();
+    string getLongDescription();
+    string visit(Player &p);
+    
+    private:
+};
+
+class Field : public Land {
+    public:
+    string getShortDescription();
+    string getLongDescription();
+    string visit(Player &p);
+    
+    private:
+};
+
+class Swamp: public Land {
+    public:
+    string getShortDescription();
+    string getLongDescription();
+    string visit(Player &p);
+    
+    private:
+};
+
+class Mountain: public Land {
+    public:
+    string getShortDescription();
+    string getLongDescription();
+    string visit(Player &p);
+    
+    private:
+};
 Land* getRandomLand(void);
 
 
