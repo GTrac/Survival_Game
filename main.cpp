@@ -70,6 +70,7 @@ int main(){
         
         cout << map[x][y]->getLongDescription() << endl << endl;
         cout << map[x][y]->visit(player) << endl << endl;
+        player.checkCon();
         if(!player.isAlive()){
             if(player.getHunger()==0){
                 cout << "You Starved to death! Better luck next time!"<<endl;

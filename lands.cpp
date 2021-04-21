@@ -122,7 +122,7 @@ string Cave::visit(Player& p){
     // Chance to find a good mushroom
     if(chance >= 90){
         description = "You eat a mushroom, greatly replenishing your hunger!";
-        p.setHunger(p.getHunger() + 2);
+        p.setHunger(p.getHunger() + 3);
         return description;
     }
     
@@ -130,9 +130,10 @@ string Cave::visit(Player& p){
      if(chance < 90 && chance >= 40){
         description = "You eat a mushroom, replenishing your hunger!";
         p.setHealth(p.getHealth() + 1);
+        p.setHunger(p.getHunger() + 1);
     }
     
-    // Chance to get mauled by bear
+    // Chance to puke from mushroom
     if(chance < 40 && chance >= 10){
         description = "You eat a mushroom, then become violently ill!";
         p.setHunger(p.getHunger() - 2);
@@ -218,8 +219,10 @@ string Swamp::visit(Player& p){
     string description;
     int chance = rand() % 10;
     if(chance==3){
-        description = "You find a crazy witch-doctor in the swamp, he casts a spell to return you to when you first awoke.";
-        p.setHealth(5);
+        description = "You find a crazy witch-doctor in the swamp, he casts a spell to to turn your food into vitality and your vitality into food.";
+        int tempH = p.getHealth();
+        p.setHealth(p.getHunger());
+        p.setHunger(tempH);
     }else{
         description = "You are able to find plenty of berry bushes in the swamp and are able to eat your fill, but all the muck has made you thirsty.";
         p.setHunger(p.getHunger() + 3);

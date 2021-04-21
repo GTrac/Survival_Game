@@ -20,6 +20,7 @@ class Player {
     void setHunger(  int h);
     void setHealth(  int h);
     void newTurn();
+    void checkCon();
     string printStats();
     bool isAlive() const;
     

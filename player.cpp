@@ -73,6 +73,12 @@ void Player::newTurn(){
     }
 }
 
+void Player::checkCon(){
+    if(hunger < 0) hunger = 0;
+    if(thirst < 0) thirst = 0;
+    if(health < 0) health = 0;
+}
+
 string Player::printStats(){
     ostringstream ss;
     ss << "health: " << health << " ";
