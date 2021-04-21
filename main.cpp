@@ -22,6 +22,7 @@ bool getPlayerInput(PlayerChoice &playerChoice){
     
     transform(input.begin(), input.end(), input.begin(), ::tolower);
     
+    
     if(input == "n"){
         playerChoice = NORTH;
     } else if(input == "s"){
@@ -31,7 +32,7 @@ bool getPlayerInput(PlayerChoice &playerChoice){
     } else if(input == "w"){
         playerChoice = WEST;
     } else {
-        cout << "Invalid input." << endl;
+        cout << "Invalid input. " << endl;
         return false;
     }
     
@@ -40,13 +41,14 @@ bool getPlayerInput(PlayerChoice &playerChoice){
 
 
 int main(){
-    const unsigned int MAP_SIZE = 20;
+    const   int MAP_SIZE = 20;
     Player player(Player::DEFAULT_HEALTH, 
                   Player::DEFAULT_HUNGER, 
                   Player::DEFAULT_THIRST, 
                   MAP_SIZE/2, MAP_SIZE/2);
     
     //Build Map
+    srand(time(NULL));
     Land* map[MAP_SIZE][MAP_SIZE];
     for(int i = 0; i < MAP_SIZE; i++){
         for(int j = 0; j < MAP_SIZE; j++){
@@ -63,19 +65,49 @@ int main(){
         player.newTurn();
         
         // Give description of surroundings
-        unsigned int x = player.getX();
-        unsigned int y = player.getY();
+          int x = player.getX();
+          int y = player.getY();
         
         cout << map[x][y]->getLongDescription() << endl << endl;
         cout << map[x][y]->visit(player) << endl << endl;
-        
+        if(!player.isAlive()){
+            if(player.getHunger()==0){
+                cout << "You Starved to death! Better luck next time!"<<endl;
+            }else if(player.getThirst()==0){
+                cout << "You died of dehydration! Better luck next time!"<<endl;
+            }else{
+                cout << "You were killed! Better luck next time!"<<endl;
+            }
+            
+            return 0;
+        }
         cout << player.printStats() << endl << endl;
         
-        // TODO: Handle boundry conditions
-        cout << "To the north you see a " << map[x][y + 1]->getShortDescription() << endl;
-        cout << "To the south you see a " << map[x][y - 1]->getShortDescription() << endl;
-        cout << "To the east you see a " << map[x + 1][y]->getShortDescription() << endl;
-        cout << "To the west you see a " << map[x - 1][y]->getShortDescription() << endl;
+        //north Look
+        if(y==19){
+            cout << "To the north you see a " << map[x][0]->getShortDescription() << endl;
+        }else{
+            cout << "To the north you see a " << map[x][y + 1]->getShortDescription() << endl;  
+        }
+        //south look
+        if(y==0){
+            cout << "To the south you see a " << map[x][19]->getShortDescription() << endl;
+        }else{
+            cout << "To the south you see a " << map[x][y - 1]->getShortDescription() << endl;
+        }
+        //east look
+        if(x==19){
+            cout << "To the east you see a " << map[0][y]->getShortDescription() << endl;
+        }else{
+           cout << "To the east you see a " << map[x + 1][y]->getShortDescription() << endl; 
+        }
+        //west look
+    
+        if(x==0){
+            cout << "To the west you see a " << map[19][y]->getShortDescription() << endl;  
+        }else{
+           cout << "To the west you see a " << map[x - 1][y]->getShortDescription() << endl; 
+        }
         
         PlayerChoice playerChoice;
         while(!getPlayerInput(playerChoice));

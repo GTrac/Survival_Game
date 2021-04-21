@@ -7,32 +7,32 @@ using namespace std;
 
 class Player {
     public:
-    Player(unsigned int health, unsigned int hunger, unsigned int thirst,
-            unsigned int x, unsigned int y);
-    unsigned int getX() const;
-    unsigned int getY() const;
-    void setX(unsigned int newX);
-    void setY(unsigned int newY);
-    unsigned int getHunger() const;
-    unsigned int getThirst() const;
-    unsigned int getHealth() const;
-    void setThirst(unsigned int t);
-    void setHunger(unsigned int h);
-    void setHealth(unsigned int h);
+    Player(  int health,   int hunger,   int thirst,
+              int x,   int y);
+      int getX() const;
+      int getY() const;
+    void setX(  int newX);
+    void setY(  int newY);
+      int getHunger() const;
+      int getThirst() const;
+      int getHealth() const;
+    void setThirst(  int t);
+    void setHunger(  int h);
+    void setHealth(  int h);
     void newTurn();
     string printStats();
     bool isAlive() const;
     
-    static const unsigned int DEFAULT_HEALTH = 3;
-    static const unsigned int DEFAULT_HUNGER = 10;
-    static const unsigned int DEFAULT_THIRST = 5;
+    static const   int DEFAULT_HEALTH = 5;
+    static const   int DEFAULT_HUNGER = 12;
+    static const   int DEFAULT_THIRST = 7;
     
     private:
-    unsigned int health;
-    unsigned int hunger;
-    unsigned int thirst;
-    unsigned int x;
-    unsigned int y;
+      int health;
+      int hunger;
+      int thirst;
+      int x;
+      int y;
 };
 
 #endif
