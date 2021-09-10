@@ -7,38 +7,9 @@ using namespace std;
 
 enum PlayerChoice {NORTH, SOUTH, EAST, WEST};
 
-void clearTerminal(){
-    for(int i = 0; i < 100; i++){
-        cout << endl;
-    }
-}
+void clearTerminal();
 
-bool getPlayerInput(PlayerChoice &playerChoice){
-    // 0 = North, 1 = South, 2 = East, 3 = West
-    string input;
-    cout << "Which direction will you go?" << endl;
-    cout << "Enter N, S, E, or W" << endl;
-    cin >> input;
-    
-    transform(input.begin(), input.end(), input.begin(), ::tolower);
-    
-    
-    if(input == "n"){
-        playerChoice = NORTH;
-    } else if(input == "s"){
-        playerChoice = SOUTH;
-    } else if(input == "e"){
-        playerChoice = EAST;
-    } else if(input == "w"){
-        playerChoice = WEST;
-    } else {
-        cout << "Invalid input. " << endl;
-        return false;
-    }
-    
-    return true;
-}
-
+bool getPlayerInput(PlayerChoice &playerChoice);
 
 int main(){
     const   int MAP_SIZE = 20;
@@ -134,4 +105,35 @@ int main(){
     }
     
     return 0;
+}
+
+bool getPlayerInput(PlayerChoice &playerChoice){
+    // 0 = North, 1 = South, 2 = East, 3 = West
+    string input;
+    cout << "Which direction will you go?" << endl;
+    cout << "Enter N, S, E, or W" << endl;
+    cin >> input;
+    
+    transform(input.begin(), input.end(), input.begin(), ::tolower);
+    
+    if(input == "n"){
+        playerChoice = NORTH;
+    } else if(input == "s"){
+        playerChoice = SOUTH;
+    } else if(input == "e"){
+        playerChoice = EAST;
+    } else if(input == "w"){
+        playerChoice = WEST;
+    } else {
+        cout << "Invalid input. " << endl;
+        return false;
+    }
+    
+    return true;
+}
+
+void clearTerminal(){
+    for(int i = 0; i < 50; i++){
+        cout << endl;
+    }
 }
